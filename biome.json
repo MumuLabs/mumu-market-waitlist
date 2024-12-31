@@ -1,0 +1,58 @@
+{
+	"$schema": "https://biomejs.dev/schemas/1.9.4/schema.json",
+	"vcs": {
+		"enabled": false,
+		"clientKind": "git",
+		"useIgnoreFile": false
+	},
+	"files": {
+		"ignoreUnknown": false,
+		"ignore": [
+			"node_modules",
+			"build",
+			"dist",
+			"coverage",
+			"public",
+			"out",
+			"next.config.js",
+			"tailwind.config.js",
+			".next",
+			"postcss.config.js",
+			"yarn.lock",
+			"package-lock.json",
+			"*.log",
+			"*.lock",
+			"*.tsbuildinfo",
+			"*.biome"
+		]
+	},
+	"json": {
+		"formatter": {
+			"trailingCommas": "none",
+			"enabled": true
+		}
+	},
+	"formatter": {
+		"enabled": true,
+		"indentStyle": "tab"
+	},
+	"organizeImports": {
+		"enabled": true
+	},
+	"linter": {
+		"enabled": true,
+		"rules": {
+			"recommended": true
+		}
+	},
+	"javascript": {
+		"formatter": {
+			"quoteStyle": "double",
+			"trailingCommas": "all",
+			"semicolons": "always",
+			"bracketSpacing": true,
+			"arrowParentheses": "always",
+			"jsxQuoteStyle": "double"
+		}
+	}
+}

@@ -3,19 +3,77 @@
 @tailwind utilities;
 
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+	--border: hsl(0, 0%, 70%);
+	--input: hsl(0, 0%, 90%);
+	--radius: 0.5rem;
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		--background-color: #ffffff;
+		--forground-color: #171717;
+	}
 }
 
 @media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
+	:root {
+		--background-color: #0b1427;
+		--forground-color: #ededed;
+
+		/* ANCHOR: Color Palette for Mumu (Dark Mode) */
+		--color-dark-sand: #d4a595;
+		--color-dark-sand-hover: #d4a595 / 90;
+
+		--color-dark-white: #ededed;
+		--color-dark-white-hover: #ededed / 90;
+	}
+}
+
+@media (prefers-color-scheme: light) {
+	:root {
+		/* ANCHOR: Color Palette for Mumu (Light Mode) */
+		/* TODO: Change these Colors! */
+		--color-light-sand: #171717;
+		--color-light-sand-hover: #171717 / 90;
+
+		--color-light-white: #171717;
+		--color-light-white-hover: #171717 / 90;
+	}
 }
 
 body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
+	color: var(--foreground-color);
+	background: var(--background-color);
+
+	font-family: var(--font-golos-text), "Lucida Sans", "Lucida Sans Regular",
+		"Lucida Grande", "Lucida Sans Unicode", Geneva, Verdana, sans-serif;
+}
+
+/* ANCHOR: Animation for Grid-Card */
+@keyframes gradient-xy {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+.animate-gradient-xy {
+	background-size: 200% 200%;
+	animation: gradient-xy 15s ease infinite;
+}
+
+/* ANCHOR: Navbar Mobile Responsiveness */
+@media (max-width: 768px) {
+	.header {
+		flex-direction: column;
+	}
+	.nav-item {
+		padding: 10px 5px;
+		font-size: 14px;
+	}
 }
