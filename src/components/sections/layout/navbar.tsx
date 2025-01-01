@@ -9,7 +9,7 @@ interface NavItem {
 }
 
 const navs: NavItem[] = [
-	{ name: "Home", href: "#home" },
+	{ name: "Home", href: "#hero" },
 	{ name: "About", href: "#about" },
 	{ name: "Services", href: "#services" },
 	{ name: "Contact", href: "#contact" },
@@ -58,7 +58,7 @@ const Navbar: React.FC = () => {
 	};
 
 	return (
-		<header className="w-full fixed top-0 left-0 z-50 flex items-center justify-between py-4 px-5 lg:px-10">
+		<header className="w-full fixed top-0 left-0 z-40 flex items-center justify-between py-4 px-5 lg:px-10">
 			<div className="mx-auto mt-4 max-w-6xl px-4 relative flex items-center justify-center">
 				<ul
 					onMouseLeave={handleMouseLeave}

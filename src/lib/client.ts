@@ -1,26 +1,30 @@
 "use server";
 
 import { client } from "@/lib/supabase/server";
-import { MumuUser, MumuBusinessOwner } from "@/types/user.types";
-import { logger } from "@/lib/logging";
+import { MumuWaitlistUser } from "@/types/user.types";
 
 // ANCHOR: Helper Function: insertRecord()
-const insertRecord = async <T>(tableName: string, data: T) => {
+const insertRecord = async (tableName: string, user: MumuWaitlistUser) => {
 	try {
-		const { error } = await client.from(tableName).insert(data);
+		const { data, error } = await client.from(tableName).insert([
+			{
+				username: user.username,
+				email: user.email,
+				is_business_owner: user.is_business_owner,
+				business_name: user.business_name ?? "",
+				created_at: user.created_at,
+				updated_at: user.updated_at,
+			},
+		]);
 
 		if (error) {
 			throw new Error(error.message);
 		}
 
-		logger.info(
-			`Record Inserted in Table ${tableName}: ${JSON.stringify(data)}`,
-		);
-		return { success: true };
+		return { success: true, data: data![0] };
 	} catch (error) {
 		const errMessage =
 			error instanceof Error ? error.message : "Unknown Error Occured (UEO)";
-		logger.error(`Error Occured: ${errMessage}`);
 
 		return { success: false, error: errMessage };
 	}
@@ -33,46 +37,18 @@ export async function handleRequestMumuUser(
 
 	const formData = new FormData(e.currentTarget);
 
-	const mumuUser: MumuUser = {
-		id: +String(formData.get("id")).trim(),
+	const mumuWaitListUser: MumuWaitlistUser = {
 		username: String(formData.get("username")).trim(),
 		email: String(formData.get("email")).trim(),
+		is_business_owner: Boolean(formData.get("is_business_owner")),
+		business_name: String(formData.get("business_name")).trim(),
 		created_at: new Date(),
 		updated_at: new Date(),
 	};
 
-	const { success, error } = await insertRecord<MumuUser>(
-		"mumu_users",
-		mumuUser,
-	);
-
-	if (!success) {
-		alert(error);
-	}
-
-	return;
-}
-
-export async function handleRequestMumuBusinessUser(
-	e: React.FormEvent<HTMLFormElement>,
-): Promise<boolean | void> {
-	e.preventDefault();
-
-	const formData = new FormData(e.currentTarget);
-
-	const MumuBusinessOwner: MumuBusinessOwner = {
-		id: +String(formData.get("id")).trim(),
-		mbo_id: String(formData.get("mboId")).trim(),
-		username: String(formData.get("username")).trim(),
-		email: String(formData.get("email")).trim(),
-		business_name: String(formData.get("businessName")).trim(),
-		created_at: new Date(),
-		updated_at: new Date(),
-	};
-
-	const { success, error } = await insertRecord<MumuBusinessOwner>(
-		"mumu_mb_users",
-		MumuBusinessOwner,
+	const { success, error } = await insertRecord(
+		"mumu_waitlist_user",
+		mumuWaitListUser,
 	);
 
 	if (!success) {

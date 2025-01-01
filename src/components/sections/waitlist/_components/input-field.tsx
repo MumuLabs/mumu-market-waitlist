@@ -20,7 +20,7 @@ export const InputField: React.FC<InputFieldProps> = ({
 	<div className="space-y-2">
 		<label
 			htmlFor={name}
-			className="block font-medium text-md text-left text-black dark:text-white mb-1"
+			className="block font-medium text-md text-left text-white/70 mb-1"
 		>
 			{label}
 		</label>
@@ -32,7 +32,7 @@ export const InputField: React.FC<InputFieldProps> = ({
 			onChange={onChange}
 			placeholder={placeholder}
 			required
-			className="w-full px-4 py-3 bg-[#171717]/90 border rounded-lg text-white 
+			className="w-full px-4 py-3 bg-[#171717]/10 border rounded-lg text-white 
                  focus:outline-none focus:border-[#d4a595] focus:ring-2 focus:ring-[#d4a595]
                  placeholder-white/50 transition-colors"
 		/>

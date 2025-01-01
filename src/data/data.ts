@@ -1,13 +1,15 @@
 import React, { ReactNode } from "react";
 
 import {
+	Logo,
 	Faq,
 	GridCard,
 	TeamMember,
 	SocialLink,
 	FooterLink,
 	Testimonial,
-	ScrollContent
+	ScrollContent,
+	Product,
 } from "@/types/general.types";
 import {
 	ShoppingCartIcon,
@@ -23,6 +25,42 @@ import {
 	LinkedInLogoIcon,
 	TwitterLogoIcon,
 } from "@radix-ui/react-icons";
+
+// ANCHOR: Logos Data
+export const logos: Logo[] = [
+	{
+		src: "/img/logos/mumu-logo.png",
+		alt: "MumuLabs Mumu Logo",
+	},
+	{
+		src: "/img/logos/mumu-logo.png",
+		alt: "MumuLabs Mumu Logo",
+	},
+];
+
+// ANCHOR: Product Data
+export const productData: Product[] = [
+	{
+		name: "Mumu Pro",
+		description: "The ultimate Mumu Marketplace experience.",
+		price: 19.99,
+		image: "/img/pfps/mumu-pro.avif",
+		rating: 4.5,
+		reviewCount: 12,
+		tags: ["Mumu", "Marketplace", "Pro"],
+		className: "w-full max-w-sm",
+	},
+	{
+		name: "Mumu Pro",
+		description: "The ultimate Mumu Marketplace experience.",
+		price: 19.99,
+		image: "/img/pfps/mumu-pro.avif",
+		rating: 4.5,
+		reviewCount: 12,
+		tags: ["Mumu", "Marketplace", "Pro"],
+		className: "w-full max-w-sm",
+	},
+];
 
 // ANCHOR: FAQ Data
 export const faqs: Faq[] = [
@@ -241,5 +279,5 @@ export const scrollContent: ScrollContent[] = [
 		title: "",
 		description: "",
 		content: {} as ReactNode,
-	}
-]
+	},
+];

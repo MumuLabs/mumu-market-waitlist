@@ -9,6 +9,7 @@ import { Services } from "@/components/sections/services";
 import { Testimonials } from "@/components/sections/testimonials";
 import { CallToAction } from "@/components/sections/cta";
 import { Faq } from "@/components/sections/faq";
+import { ContactUs } from "@/components/sections/contact-us";
 
 export default function Home() {
 	return (
@@ -23,6 +24,7 @@ export default function Home() {
 					p="We understand how hard it can be to get exposure for your business. We are here to help you succeed and build that growth you are looking for. Join us today and start your journey with Mumu."
 				/>
 				<CallToAction />
+				<ContactUs />
 			</main>
 		</div>
 	);

@@ -26,7 +26,7 @@ export function WaitlistForm() {
 		handleSubmit,
 		formState: { errors },
 		reset,
-		setValue
+		setValue,
 	} = useForm({
 		resolver: zodResolver(userSchema),
 		defaultValues: {
@@ -55,8 +55,7 @@ export function WaitlistForm() {
 		is_business_owner?: boolean;
 		business_name?: string;
 	}) => {
-		toast.success("Success! Thank you for joining Mumu 🎉")
-
+		toast.success("Success! Thank you for joining Mumu 🎉");
 
 		console.log("Data: ", data);
 		reset();
@@ -93,7 +92,7 @@ export function WaitlistForm() {
 					/>
 				)}
 			/>
-			{errors.email && <p className="text-red-500">{errors.email.message}</p>}
+			{errors.email && <p className="text-red-500">{errors.email.message}.</p>}
 
 			<div className="flex items-center space-x-2">
 				<Controller
@@ -103,6 +102,7 @@ export function WaitlistForm() {
 						<Checkbox
 							id="is_business_owner"
 							checked={field.value}
+							className="text-white peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 							onCheckedChange={(checked: boolean) => {
 								field.onChange(checked);
 								setIsBusinessOwner(checked);
@@ -112,7 +112,7 @@ export function WaitlistForm() {
 				/>
 				<label
 					htmlFor="is_business_owner"
-					className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+					className="text-sm text-white/70 font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
 				>
 					Are You A Business Owner?
 				</label>
@@ -132,7 +132,7 @@ export function WaitlistForm() {
 				/>
 			)}
 
-			<Button text="Join Waitlist" className="w-full" />
+			<Button text="Join Waitlist" className="w-full text-white" />
 		</form>
 	);
 }
