@@ -88,10 +88,10 @@ export const ModalBody = ({
 						className="fixed inset-0 z-40"
 					>
 						<div
-							className="fixed inset-0 bg-black/50 backdrop-blur-sm w-screen h-screen"
+							className="fixed inset-0 bg-[#0b1427]/40 z-40"
 							style={{
-								WebkitBackdropFilter: 'blur(8px)',
-								backdropFilter: 'blur(8px)'
+								WebkitBackdropFilter: "blur(8px)",
+								backdropFilter: "blur(8px)",
 							}}
 						/>
 					</motion.div>
@@ -99,7 +99,7 @@ export const ModalBody = ({
 						<motion.div
 							ref={modalRef}
 							className={cn(
-								"min-h-[50%] max-h-[90%] w-[90%] md:max-w-[40%] bg-[#0b1427] dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative flex flex-col flex-1 overflow-hidden",
+								"min-h-[50%] max-h-[90%] w-[90%] md:max-w-[40%] bg-[#0b1427] border border-transparent dark:border-neutral-800 md:rounded-2xl relative flex flex-col flex-1 overflow-hidden",
 								className,
 							)}
 							initial={{
@@ -152,34 +152,9 @@ export const ModalFooter = ({
 	className?: string;
 }) => {
 	return (
-		<div
-			className={cn(
-				"flex justify-end p-4 bg-gray-100 dark:bg-neutral-900",
-				className,
-			)}
-		>
+		<div className={cn("flex justify-end p-4 bg-slate-400/10", className)}>
 			{children}
 		</div>
-	);
-};
-
-// ANCHOR: Overlay not being Used.
-const Overlay = ({ className }: { className?: string }) => {
-	return (
-		<motion.div
-			initial={{
-				opacity: 0,
-			}}
-			animate={{
-				opacity: 1,
-				backdropFilter: "blur(10px)",
-			}}
-			exit={{
-				opacity: 0,
-				backdropFilter: "blur(0px)",
-			}}
-			className={`fixed inset-0 bg-black bg-opacity-50 z-40 ${className}`}
-		></motion.div>
 	);
 };
 
@@ -217,7 +192,7 @@ export const CloseButton = ({ className }: { className?: string }) => {
 	return (
 		<button
 			className={cn(
-				"px-2 py-1 bg-gray-200 text-black dark:bg-black dark:border-black dark:text-white border border-gray-300 rounded-md text-sm w-28",
+				"px-2 py-1 dark:text-white border border-white rounded-md text-sm w-28",
 				className,
 			)}
 			onClick={() => setOpen(false)}

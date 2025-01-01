@@ -12,8 +12,8 @@ const golosFont = Golos_Text({
 });
 
 export const metadata: Metadata = {
-	title: "Sandbox Environment",
-	description: "Sandbox Environment for Mumu Marketplace.",
+	title: "Mumu Market | Waitlist",
+	description: "Official Waitlist for Mumu Marketplace.",
 };
 
 export default function RootLayout({
@@ -22,7 +22,7 @@ export default function RootLayout({
 	children: React.ReactNode;
 }>) {
 	return (
-		<html lang="en">
+		<html lang="en" className="dark" data-theme="dark" suppressHydrationWarning>
 			<body className={`${golosFont.variable} antialiased`}>
 				<Navbar />
 				<Toaster />

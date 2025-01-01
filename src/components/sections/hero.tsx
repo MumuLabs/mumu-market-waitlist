@@ -1,9 +1,8 @@
 "use client";
 
 import React from "react";
-import LogoCarousel from "@/components/ui/logo-carousel";
-import { logos } from "@/data/data";
-import { Button } from "../ui/button";
+import { productDataSectionOne, productDataSectionTwo } from "@/data/data";
+import { InifiniteMovingProductCards } from "@/components/ui/product-carousel";
 
 export function Hero() {
 	const handleButtonClickedScrollToWaitlist = () => {
@@ -14,8 +13,8 @@ export function Hero() {
 	};
 
 	return (
-		<section id="hero" className="py-56 overflow-hidden">
-			<div className="text-center">
+		<section id="hero" className="py-56 overflow-hidden flex flex-col items-center">
+			<div className="text-center py-10">
 				<h1 className="text-5xl md:text-7xl font-extrabold mb-4 text-white drop-shadow-lg">
 					Muslim Shopping, Simplified.
 				</h1>
@@ -24,12 +23,32 @@ export function Hero() {
 					Support with ease.
 				</p>
 
-				<Button
+				<button
 					onClick={handleButtonClickedScrollToWaitlist}
-					className="px-8 py-7 rounded-full bg-gradient-to-b from-[#d4a595] to-[#d4a595]/80 via-[#d4a595]/80 text-white font-bold mt-5 hover:scale-105 transition-transform duration-300"
+					className="px-8 py-4 rounded-full bg-gradient-to-b from-[#d4a595] to-[#d4a595]/80 via-[#d4a595]/80 text-white font-medium  hover:scale-105 transition-transform duration-300"
 				>
-					Join Waitlist
-				</Button>
+					Join Waitlist 🐫
+				</button>
+			</div>
+			
+
+			<div className="flex flex-col mt-10">
+				<div className="h-full flex items-center justify-center overflow-hidden">
+					<InifiniteMovingProductCards
+						items={productDataSectionOne}
+						direction="left"
+						speed="normal"
+						pauseOnHover={true}
+					/>
+				</div>
+				<div className="h-1/2 flex items-center justify-center overflow-hidden">
+					<InifiniteMovingProductCards
+						items={productDataSectionTwo}
+						direction="right"
+						speed="normal"
+						pauseOnHover={true}
+					/>
+				</div>
 			</div>
 		</section>
 	);

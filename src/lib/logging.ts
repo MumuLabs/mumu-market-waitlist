@@ -1,8 +1,24 @@
 import winston from "winston";
 
-const { combine, timestamp, printf, colorize } = winston.format;
+interface CustomLevels extends winston.config.AbstractConfigSetLevels {
+	error: number;
+	warn: number;
+	info: number;
+	http: number;
+	verbose: number;
+	debug: number;
+}
 
-const levels = {
+interface CustomColors extends winston.config.AbstractConfigSetColors {
+	error: string;
+	warn: string;
+	info: string;
+	http: string;
+	verbose: string;
+	debug: string;
+}
+
+const levels: CustomLevels = {
 	error: 0,
 	warn: 1,
 	info: 2,
@@ -11,7 +27,7 @@ const levels = {
 	debug: 5,
 };
 
-const colors = {
+const colors: CustomColors = {
 	error: "red",
 	warn: "yellow",
 	info: "green",
@@ -19,6 +35,17 @@ const colors = {
 	verbose: "cyan",
 	debug: "white",
 };
+
+interface CustomLogger extends winston.Logger {
+	error: winston.LeveledLogMethod;
+	warn: winston.LeveledLogMethod;
+	info: winston.LeveledLogMethod;
+	http: winston.LeveledLogMethod;
+	verbose: winston.LeveledLogMethod;
+	debug: winston.LeveledLogMethod;
+}
+
+const { combine, timestamp, printf, colorize } = winston.format;
 
 winston.addColors(colors);
 
@@ -35,17 +62,23 @@ const consoleTransport = new winston.transports.Console({
 });
 
 const logger = winston.createLogger({
-	level: process.env.WINSTON_LOG_LEVEL || "info",
-	levels: levels,
+	level: (process.env.WINSTON_LOG_LEVEL as string) || "info",
+	levels,
 	format: loggingFormat,
 	transports: [consoleTransport],
 	exitOnError: false,
-});
+}) as CustomLogger;
 
-const stream = {
+interface LogStream {
+	write(message: string): void;
+}
+
+const stream: LogStream = {
 	write: (message: string) => {
 		logger.http(message.trim());
 	},
 };
 
 export { logger, stream };
+
+export type Logger = typeof logger;

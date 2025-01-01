@@ -42,14 +42,13 @@ export function AboutUs() {
 				<div className="text-center">
 					<h2 className="text-4xl font-bold tracking-tight text-white sm:text-5xl mb-8">
 						{" "}
-						{/* Changed to text-white */}
 						About MuMu
 					</h2>
 
 					<p className="mt-8 text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto">
 						We are a team of passionate software engineers who connected through
 						a fellowship called
-						<span className="font-semibold text-[#F5DEB3]">
+						<span className="font-semibold text-[#e7b7a7]">
 							{" "}
 							Headstarter AI
 						</span>
@@ -57,7 +56,7 @@ export function AboutUs() {
 						empowering Muslim-owned businesses. We believe that by working
 						together, we can create innovative, community-driven solutions that
 						will benefit everyone. At
-						<span className="font-semibold text-[#F5DEB3]"> Mumu</span>, we are
+						<span className="font-semibold text-[#e7b7a7]"> Mumu</span>, we are
 						more than a marketplace—we are a movement focused on empowering
 						Muslim-owned businesses, streamlining the path to discovery, and
 						nurturing meaningful connections worldwide. Through dedication and
@@ -67,6 +66,14 @@ export function AboutUs() {
 				</div>
 			</div>
 
+			<div className="mt-10">
+				<h1 className="text-center text-4xl font-bold tracking-tight text-white sm:text-5xl mb-8">
+					Our Team
+				</h1>
+				<p className="mt-8 text-center text-lg leading-relaxed text-gray-300 max-w-3xl mx-auto">
+					Meet the team behind Mumu.
+				</p>
+			</div>
 			<div className="mt-24 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 place-items-center">
 				{teamMembers.map((member, index) => {
 					let imageStyle: React.CSSProperties = {

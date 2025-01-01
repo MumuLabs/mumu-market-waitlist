@@ -22,12 +22,12 @@ export function WaitlistModal() {
 				<ModalContent className="max-w-full">
 					<h4
 						className={twMerge(
-							`${modalStyles.heading} text-2xl text-white/70 font-bold text-center mb-8`,
+							`${modalStyles.heading} text-2xl text-white/70 font-bold text-center mb-4`,
 						)}
 					>
 						Join Mumu
 					</h4>
-					<p className="text-white/70 text-left mb-8">
+					<p className="text-white/70 text-left mb-4">
 						Join our waitlist to be notified when we launch Mumu and get access
 						to Mumu's exclusive early access program for early adopters. We hope
 						you'll join us and help us build the future of Mumu!
@@ -37,7 +37,7 @@ export function WaitlistModal() {
 				<ModalFooter className="mt-6 flex justify-end">
 					<CloseButton
 						className={twMerge(
-							`${modalStyles.closeButton} rounded-md bg-transparent p-2 text-black hover:bg-[#d4a595]/80`,
+							`${modalStyles.closeButton} rounded-md bg-transparent p-2 dark:text-white dark:hover:bg-white dark:hover:text-black`,
 						)}
 					/>
 				</ModalFooter>

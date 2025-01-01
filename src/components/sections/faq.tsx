@@ -6,6 +6,7 @@ import {
 } from "@/components/ui/accordion";
 import { faqs } from "@/data/data";
 
+// ANCHOR: FAQ Section is Currently Not Used.
 export function Faq() {
 	return (
 		<section id="faq" className="w-full">

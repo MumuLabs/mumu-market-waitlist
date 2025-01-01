@@ -4,6 +4,7 @@ import React from "react";
 import { testimonials } from "@/data/data";
 import { InfiniteMovingCards } from "../ui/infinite-moving-cards";
 
+// ANCHOR: Testimonials Section is Currently Not Used.
 export function Testimonials() {
 	return (
 		<section id="testimonials" className="py-16">

@@ -2,8 +2,7 @@
 
 import { FC, ReactNode, useRef } from "react";
 import { motion, MotionValue, useScroll, useTransform } from "framer-motion";
-
-import { cn } from "@/utils/cn";
+import { cn } from "@/lib/utils";
 
 interface TextRevealByWordProps {
 	text: string;

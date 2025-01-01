@@ -21,7 +21,6 @@ interface ProductCardProps {
 	image: string;
 	rating: number;
 	reviewCount: number;
-	inStock: boolean;
 	tags?: string[];
 	className?: string;
 }
@@ -33,7 +32,6 @@ const ProductCard: React.FC<ProductCardProps> = ({
 	image,
 	rating,
 	reviewCount,
-	inStock,
 	tags = [],
 	className,
 }) => {
@@ -90,22 +88,12 @@ const ProductCard: React.FC<ProductCardProps> = ({
 					<div className="flex items-baseline gap-2 mb-2">
 						<span className="text-2xl font-bold">${price.toFixed(2)}</span>
 					</div>
-
-					<p
-						className={cn(
-							"text-sm mb-4",
-							inStock ? "text-green-600" : "text-red-600",
-						)}
-					>
-						{inStock ? "In Stock" : "Out of Stock"}
-					</p>
 				</CardContent>
 
 				<CardFooter className="p-4 pt-0 flex gap-2">
 					<Button
 						className="flex-1"
 						onClick={() => console.log("This Feature is Coming Soon!")}
-						disabled={!inStock}
 					>
 						<ShoppingCartIcon className="w-4 h-4 mr-2" />
 						Add to Cart

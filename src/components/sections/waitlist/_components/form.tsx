@@ -10,6 +10,7 @@ import { InputField } from "@/components/sections/waitlist/_components/input-fie
 import { Button } from "@/components/sections/waitlist/_components/button";
 import { Checkbox } from "@/components/ui/checkbox";
 import { toast } from "sonner";
+import { handleRequestMumuUser } from "@/lib/client";
 
 const userSchema = z.object({
 	username: z.string().min(3).max(50),
@@ -49,18 +50,25 @@ export function WaitlistForm() {
 		clearBusinessNameWhenCheckboxIsUnchecked();
 	}, [isBusinessOwner]);
 
-	const onSubmitForm = (data: {
+	const onSubmitForm = async (data: {
 		username: string;
 		email?: string;
 		is_business_owner?: boolean;
 		business_name?: string;
 	}) => {
-		toast.success("Success! Thank you for joining Mumu 🎉");
+		const success = await handleRequestMumuUser(
+			data.username,
+			data.email!,
+			data.is_business_owner!,
+			data.business_name!,
+		);
 
-		console.log("Data: ", data);
-		reset();
-
-		// TODO: Add Logic to Store the Data in Supabase Database, and Brevo API
+		if (success) {
+			toast.success("Success! Thank you for joining Mumu 🎉");
+			reset();
+		} else {
+			toast.error("Something went wrong, please try again.");
+		}
 	};
 
 	return (

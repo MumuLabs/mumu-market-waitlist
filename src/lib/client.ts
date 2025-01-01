@@ -17,8 +17,8 @@ const insertRecord = async (tableName: string, user: MumuWaitlistUser) => {
 			},
 		]);
 
-		if (error) {
-			throw new Error(error.message);
+		if (!data) {
+			throw new Error(error?.message);
 		}
 
 		return { success: true, data: data![0] };
@@ -31,17 +31,16 @@ const insertRecord = async (tableName: string, user: MumuWaitlistUser) => {
 };
 
 export async function handleRequestMumuUser(
-	e: React.FormEvent<HTMLFormElement>,
-): Promise<boolean | void> {
-	e.preventDefault();
-
-	const formData = new FormData(e.currentTarget);
-
+	username: string,
+	email: string,
+	is_business_owner: boolean,
+	business_name: string,
+): Promise<boolean | null> {
 	const mumuWaitListUser: MumuWaitlistUser = {
-		username: String(formData.get("username")).trim(),
-		email: String(formData.get("email")).trim(),
-		is_business_owner: Boolean(formData.get("is_business_owner")),
-		business_name: String(formData.get("business_name")).trim(),
+		username: username.trim() ?? "",
+		email: email.trim() ?? "",
+		is_business_owner: is_business_owner,
+		business_name: business_name.trim() ?? "",
 		created_at: new Date(),
 		updated_at: new Date(),
 	};
@@ -51,9 +50,5 @@ export async function handleRequestMumuUser(
 		mumuWaitListUser,
 	);
 
-	if (!success) {
-		alert(error);
-	}
-
-	return;
+	return success;
 }

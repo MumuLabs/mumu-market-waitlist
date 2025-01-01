@@ -13,6 +13,13 @@ export type Logo = {
 	alt: string;
 };
 
+export type ProcessStep = {
+	icon: React.ReactNode;
+	title: string;
+	description: string;
+	className?: string;
+};
+
 export type Faq = {
 	question: string;
 	answer: string;

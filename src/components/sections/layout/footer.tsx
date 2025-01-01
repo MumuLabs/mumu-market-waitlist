@@ -3,11 +3,11 @@ import { socialLinks, footerLinks } from "@/data/data";
 
 export function Footer() {
 	return (
-		<footer id="footer">
-			<div className="py-6 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
+		<footer id="footer" className="py-16">
+			<div className="px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto">
 				<div className="flex flex-col items-center space-y-7">
 					<Image
-						className="w-20 h-auto transform transition-transform duration-300 hover:scale-110"
+						className="w-20 h-auto"
 						src="/mumu-logo.png"
 						alt="MumuLabs Mumu Logo"
 						width={100}
@@ -34,7 +34,7 @@ export function Footer() {
 							<a
 								key={index}
 								href={link.url}
-								className="text-sm font-medium text-gray-500 hover:text-[#d4a595] hover:underline transition-colors duration-300"
+								className="text-md font-medium text-gray-500 hover:text-[#d4a595] hover:underline transition-colors duration-300"
 							>
 								{link.text}
 							</a>
