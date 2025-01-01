@@ -108,7 +108,7 @@ export const teamMembers: TeamMember[] = [
 		avatar: "/img/pfps/bilal.avif",
 		description:
 			"Passionate developer driven to empower Muslim communities through innovative solutions.",
-		linkedin: "https://www.linkedin.com/in/hikue/",
+		linkedin: "https://github.com/Hi-kue",
 		github: "https://www.linkedin.com/in/hikue/",
 	},
 	{
