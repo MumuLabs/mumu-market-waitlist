@@ -1,7 +1,7 @@
 "use client";
 
 import React from "react";
-import { productDataSectionOne, productDataSectionTwo } from "@/data/data";
+import { productDataSectionOne } from "@/data/data";
 import { InifiniteMovingProductCards } from "@/components/ui/product-carousel";
 
 export function Hero() {
@@ -37,14 +37,6 @@ export function Hero() {
 					<InifiniteMovingProductCards
 						items={productDataSectionOne}
 						direction="left"
-						speed="normal"
-						pauseOnHover={true}
-					/>
-				</div>
-				<div className="h-1/2 flex items-center justify-center overflow-hidden">
-					<InifiniteMovingProductCards
-						items={productDataSectionTwo}
-						direction="right"
 						speed="normal"
 						pauseOnHover={true}
 					/>
