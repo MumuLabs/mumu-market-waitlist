@@ -1,7 +1,8 @@
 "use client";
 
+import React from "react";
 import { cn } from "@/lib/utils";
-import React, { useEffect, useState } from "react";
+import ProductCard from "@/components/ui/product-card";
 
 interface ProductCardProps {
 	name: string;
@@ -27,136 +28,67 @@ export const InifiniteMovingProductCards = ({
 	pauseOnHover?: boolean;
 	className?: string;
 }) => {
+	// Duplicate your data array so the list can seamlessly loop.
+	const repeatedItems = React.useMemo(() => [...items, ...items], [items]);
 	const containerRef = React.useRef<HTMLDivElement>(null);
-	const scrollerRef = React.useRef<HTMLUListElement>(null);
-	const [start, setStart] = useState(false);
 
-	useEffect(() => {
-		addAnimation();
-	}, []);
+	React.useEffect(() => {
+		setDirection();
+		setSpeed();
+	}, [direction, speed]);
 
-	function addAnimation() {
-		if (containerRef.current && scrollerRef.current) {
-			const scrollerContent = Array.from(scrollerRef.current.children);
-
-			scrollerContent.forEach((item) => {
-				const duplicatedItem = item.cloneNode(true);
-				if (scrollerRef.current) {
-					scrollerRef.current.appendChild(duplicatedItem);
-				}
-			});
-
-			getDirection();
-			getSpeed();
-			setStart(true);
-		}
+	function setDirection() {
+		if (!containerRef.current) return;
+		// 'forwards' means left-to-right in the keyframes animation
+		// 'reverse' will reverse the direction
+		const newDirection = direction === "left" ? "normal" : "reverse";
+		containerRef.current.style.setProperty("--scroll-direction", newDirection);
 	}
 
-	const getDirection = () => {
-		if (containerRef.current) {
-			if (direction === "left") {
-				containerRef.current.style.setProperty(
-					"--animation-direction",
-					"forwards",
-				);
-			} else {
-				containerRef.current.style.setProperty(
-					"--animation-direction",
-					"reverse",
-				);
-			}
-		}
-	};
-
-	const getSpeed = () => {
-		if (containerRef.current) {
-			if (speed === "fast") {
-				containerRef.current.style.setProperty("--animation-duration", "20s");
-			} else if (speed === "normal") {
-				containerRef.current.style.setProperty("--animation-duration", "40s");
-			} else {
-				containerRef.current.style.setProperty("--animation-duration", "80s");
-			}
-		}
-	};
+	function setSpeed() {
+		if (!containerRef.current) return;
+		let duration = "40s"; // normal
+		if (speed === "fast") duration = "20s";
+		if (speed === "slow") duration = "80s";
+		containerRef.current.style.setProperty("--scroll-duration", duration);
+	}
 
 	return (
 		<div
 			ref={containerRef}
 			className={cn(
-				"scroller relative z-20 max-w-7xl overflow-hidden [mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
-				className,
+				"relative z-20 max-w-7xl overflow-hidden",
+				// Mask to fade edges
+				"[mask-image:linear-gradient(to_right,transparent,white_20%,white_80%,transparent)]",
+				className
 			)}
+			// We'll rely on custom CSS variables for direction & duration
 		>
 			<ul
-				ref={scrollerRef}
 				className={cn(
-					"flex min-w-full shrink-0 gap-4 py-4 w-max flex-nowrap",
-					start && "animate-scroll",
-					pauseOnHover && "hover:[animation-play-state:paused]",
+					// The "animate-scroll" class references a custom CSS keyframe
+					// that translates X from 0% to -50% continuously
+					"flex min-w-full gap-4 py-4 w-[200%] flex-nowrap",
+					"animate-scroll",
+					pauseOnHover && "hover:[animation-play-state:paused]"
 				)}
+				style={{
+					animationDirection: `var(--scroll-direction, normal)`,
+					animationDuration: `var(--scroll-duration, 40s)`,
+					animationTimingFunction: "linear",
+					animationIterationCount: "infinite",
+				}}
 			>
-				{items.map((product, idx) => (
-					<li
-						className="w-[300px] max-w-full relative rounded-2xl border flex-shrink-0 border-slate-700 overflow-hidden bg-slate-900"
-						key={`${product.name}-${idx}`}
-					>
-						<div className="relative h-[200px] w-full overflow-hidden flex items-center justify-center bg-slate-800">
-							<img
-								src={product.image}
-								alt={product.name}
-								className="max-h-full max-w-full object-contain"
-							/>
-						</div>
-						<div className="p-4">
-							<h3 className="text-lg font-semibold text-white mb-1">
-								{product.name}
-							</h3>
-							<p className="text-sm text-gray-400 line-clamp-2 mb-2">
-								{product.description}
-							</p>
-							<div className="flex flex-col gap-2">
-								<div className="flex items-center justify-between">
-									<span className="text-lg font-bold text-white">
-										${product.price.toFixed(2)}
-									</span>
-									<div className="flex items-center gap-1">
-										<div className="flex items-center">
-											{[...Array(5)].map((_, i) => (
-												<svg
-													key={i}
-													className={cn(
-														"w-4 h-4",
-														i < product.rating
-															? "text-yellow-400"
-															: "text-gray-600",
-													)}
-													fill="currentColor"
-													viewBox="0 0 20 20"
-												>
-													<path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
-												</svg>
-											))}
-										</div>
-										<span className="text-sm text-gray-400">
-											({product.reviewCount})
-										</span>
-									</div>
-								</div>
-								{product.tags && product.tags.length > 0 && (
-									<div className="flex flex-wrap gap-1">
-										{product.tags.map((tag) => (
-											<span
-												key={tag}
-												className="bg-slate-900/80 border border-white/20 text-white px-2 py-1 rounded-full text-sm"
-											>
-												{tag}
-											</span>
-										))}
-									</div>
-								)}
-							</div>
-						</div>
+				{repeatedItems.map((product, idx) => (
+					<li key={`${product.name}-${idx}`} className="flex-shrink-0">
+						<ProductCard
+							name={product.name}
+							description={product.description}
+							price={product.price}
+							image={product.image}
+							rating={product.rating}
+							reviewCount={product.reviewCount}
+						/>
 					</li>
 				))}
 			</ul>
