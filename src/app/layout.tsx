@@ -2,8 +2,8 @@ import type { Metadata } from "next";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Opencejav Waitlist",
-  description: "Waitlist site for Opencejav | Startup for University Students in Tech",
+  title: "Mumu Market Waitlist",
+  description: "Mumu Market Waitlist | Single Marketplace For Muslim-Owned Businesses.",
 };
 
 export default function RootLayout({

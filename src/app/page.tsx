@@ -1,52 +1,79 @@
 "use client";
 
 import React from 'react';
-import { Hero } from '@/components/sections/hero';
+import { motion, useInView } from 'framer-motion';
+
+import { Hero } from '@/components/sections/hero/hero';
+import { ProductsSection } from '@/components/sections/products';
 import { Feature } from '@/components/sections/feature';
-import { motion } from 'framer-motion';
-import { ProductsSection } from '@/components/sections/product/products';
+import { FeaturesArray } from '@/data/data';
+import { BusinessValuesSection } from '@/components/sections/values';
 
 export default function App() {
-  const features = [
-    {
-      icon: <svg className="w-8 h-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
-      </svg>,
-      title: 'Quick onboarding',
-      description: 'We have made it super easy for merchants to sign up and start accepting alternate payments'
-    },
-    {
-      icon: <svg className="w-8 h-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-      </svg>,
-      title: 'Low-cost charges',
-      description: 'We charge a flat fee on all payment transactions and settle in the merchants local currency'
-    },
-    {
-      icon: <svg className="w-8 h-8 text-indigo-600" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
-      </svg>,
-      title: 'Access to channels',
-      description: 'Start accepting mobile money, crypto, cash payments and third-party wallet services'
-    }
-  ];
+  const heroRef = React.useRef(null);
+  const productsRef = React.useRef(null);
+  const featuresRef = React.useRef(null);
+  const valuesRef = React.useRef(null);
+
+  const isHeroInView = useInView(heroRef, { once: true, amount: 0.3 });
+  const isProductsInView = useInView(productsRef, { once: true, amount: 0.3 });
+  const isFeaturesInView = useInView(featuresRef, { once: true, amount: 0.3 });
+  const isValuesInView = useInView(valuesRef, { once: true, amount: 0.3 });
 
   return (
     <motion.div 
-      className="min-h-screen bg-gradient-to-br from-blue-50 to-purple-50"
-      initial={{ opacity: 0 }}
-      animate={{ opacity: 1 }}
-      transition={{ duration: 1 }}
+      className="min-h-screen"
+      initial={{ scale: 0.8, opacity: 0 }}
+      animate={{ scale: 1, opacity: 1 }}
+      transition={{ duration: 0.8, ease: "easeOut" }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <Hero />
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-12 py-20">
-          {features.map((feature, index) => (
-            <Feature key={index} {...feature} />
+        <motion.div
+          ref={heroRef}
+          initial={{ y: 50, opacity: 0 }}
+          animate={isHeroInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <Hero />
+        </motion.div>
+
+        <motion.div
+          ref={productsRef}
+          initial={{ x: -50, opacity: 0 }}
+          animate={isProductsInView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          <ProductsSection />
+        </motion.div>
+
+        <motion.div 
+          ref={featuresRef}
+          className="grid grid-cols-1 md:grid-cols-3 gap-12 py-20"
+          initial={{ y: 50, opacity: 0 }}
+          animate={isFeaturesInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+          transition={{ duration: 0.6 }}
+        >
+          {FeaturesArray.map((feature, index) => (
+            <motion.div
+              key={index}
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={isFeaturesInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
+              transition={{ duration: 0.5, delay: index * 0.1 }}
+            >
+              <Feature {...feature} />
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
-      <ProductsSection />
+
+      <motion.div
+        ref={valuesRef}
+        initial={{ y: 50, opacity: 0 }}
+        animate={isValuesInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <BusinessValuesSection />
+      </motion.div>
     </motion.div>
   );
 }
