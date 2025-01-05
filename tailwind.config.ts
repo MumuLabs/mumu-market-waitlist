@@ -61,9 +61,6 @@ export default {
 				md: 'calc(var(--radius) - 2px)',
 				sm: 'calc(var(--radius) - 4px)'
 			},
-			animation: {
-				'shiny-text': 'shiny-text 8s infinite'
-			},
 			keyframes: {
 				'shiny-text': {
 					'0%, 90%, 100%': {
@@ -72,8 +69,17 @@ export default {
 					'30%, 60%': {
 						'background-position': 'calc(100% + var(--shiny-width)) 0'
 					}
-				}
-			}
+				},
+				scroll: {
+					to: {
+						transform: "translate(calc(-50% - 0.5rem))",
+					},
+				},
+			},
+			animation: {
+				'scroll': "scroll var(--animation-duration, 40s) var(--animation-direction, forwards) linear infinite",
+				'shiny-text': 'shiny-text 8s infinite'
+			},
 		}
 	},
 	plugins: [require("tailwindcss-animate")],

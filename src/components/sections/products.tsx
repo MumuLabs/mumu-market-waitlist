@@ -2,7 +2,7 @@
 
 import { ProductArray } from "@/data/data";
 import React from "react";
-import { InfiniteMovingProductCards } from "../ui/infinite-moving-cards";
+import { InfiniteMovingProductCards } from "@/components/ui/infinite-moving-cards";
 
 
 export function ProductsSection() {

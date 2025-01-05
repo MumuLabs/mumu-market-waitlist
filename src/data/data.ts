@@ -19,17 +19,29 @@ export const FeaturesArray: FeatureType[] = [
     {
         icon: React.createElement(ShoppingBasketIcon, { className: "w-8 h-8" }),
         title: "Checkout The Global Market",
-        description: "",
+        description: `
+        Explore our curated collection authentic products 
+        from trusted muslim-owned businesses worldwide, all 
+        verified by us.
+        `,
     },
     {
         icon: React.createElement(ScanBarcodeIcon, { className: "w-8 h-8" }),
         title: "Add A Product To Your Cart",
-        description: "",
+        description: `
+        Easily browse and select a product you want to buy 
+        and add it to your cart. We will handle the rest
+        for you.
+        `,
     },
     {
         icon: React.createElement(TruckIcon, { className: "w-8 h-8" }),
         title: "Track Your Orders In Real Time",
-        description: "",
+        description: `
+        Stay informed with real-time shipping updates and 
+        know exactly when your package will arrive at your 
+        doorstep.
+        `,
     },
 ];
 
@@ -81,7 +93,7 @@ export const ProductArray: ProductType[] = [
         description:
             "Premium prayer mat for both men and women with a unique design.",
         price: 45.99,
-        image: "/img/products/kabaa-mat-rmbg.png",
+        image: "/products/kabaa-mat-rmbg.png",
         rating: 4.5,
         reviewCount: 12,
         tags: ["Kabaa", "Mat", "Prayer Mat"],
@@ -92,7 +104,7 @@ export const ProductArray: ProductType[] = [
         description:
             "The perfect fragrance for those who want to indulge in a luxurious experience.",
         price: 59.99,
-        image: "/img/products/musk-amber-cologne-rmbg.png",
+        image: "/products/musk-amber-cologne-rmbg.png",
         rating: 4.1,
         reviewCount: 200,
         tags: ["Musk", "Cologne", "Fragrance", "Luxury"],
@@ -103,7 +115,7 @@ export const ProductArray: ProductType[] = [
         description:
             "Perfect Abaya for women, simple and elegant with a modest design.",
         price: 79.99,
-        image: "/img/products/noor-abaya-rmbg.png",
+        image: "/products/noor-abaya-rmbg.png",
         rating: 4.3,
         reviewCount: 150,
         tags: ["Noor", "Abaya", "Women", "Elegant"],
@@ -114,7 +126,7 @@ export const ProductArray: ProductType[] = [
         description:
             "A luxurious and comfortable rug, made with high-quality materials and designed for comfort.",
         price: 39.99,
-        image: "/img/products/aydin-prayer-rug-rmbg.png",
+        image: "/products/aydin-prayer-rug-rmbg.png",
         rating: 4.5,
         reviewCount: 100,
         tags: ["Aydin", "Prayer", "Rug"],
@@ -125,7 +137,7 @@ export const ProductArray: ProductType[] = [
         description:
             "A beautiful and elegant piece of jewelry with a piece of Palestinian history.",
         price: 49.99,
-        image: "/img/products/palestine-braided-jewelry-rmbg.png",
+        image: "/products/palestine-braided-jewelry-rmbg.png",
         rating: 4.9,
         reviewCount: 245,
         tags: ["Palestine", "Braided", "Jewelry"],
@@ -135,7 +147,7 @@ export const ProductArray: ProductType[] = [
         name: "Palestine T-Shirt",
         description: "A minimal and elegant t-shirt with a minimal design.",
         price: 29.99,
-        image: "/img/products/palestine-t-shirt-rmbg.png",
+        image: "/products/palestine-t-shirt-rmbg.png",
         rating: 4.7,
         reviewCount: 150,
         tags: ["Palestine", "T-Shirt"],
@@ -146,7 +158,7 @@ export const ProductArray: ProductType[] = [
         description:
             "High-quality Quran gift set with tasbih, quran, in a beautiful and elegant wooden box.",
         price: 59.99,
-        image: "/img/products/deluxe-quran-gift-set-rmbg.png",
+        image: "/products/deluxe-quran-gift-set-rmbg.png",
         rating: 4.8,
         reviewCount: 300,
         tags: ["Deluxe", "Quran", "Gift", "Set"],
@@ -157,7 +169,7 @@ export const ProductArray: ProductType[] = [
         description: "A luxurious and elegant perfume with a unique scent.",
         price: 69.99,
         image:
-            "/img/products/modefa-perfume-aksa-concentrated-essential-oil-rmbg.png",
+            "/products/modefa-perfume-aksa-concentrated-essential-oil-rmbg.png",
         rating: 4.6,
         reviewCount: 250,
         tags: ["Modefa", "Perfume", "Concentrated", "Oil"],
@@ -168,7 +180,7 @@ export const ProductArray: ProductType[] = [
         description:
             "Elegant and modern hijab for women, made with premium fabric that is soft, breathable, and durable.",
         price: 49.99,
-        image: "/img/products/black-jersey-shayla-hijab-rmbg.png",
+        image: "/products/black-jersey-shayla-hijab-rmbg.png",
         rating: 4,
         reviewCount: 230,
         tags: ["Hijab", "Modern", "Elegant"],
@@ -179,7 +191,7 @@ export const ProductArray: ProductType[] = [
         description:
             "Handcrafted tasbih with 99 beads in black and tan, designed for comfort and durability",
         price: 12.99,
-        image: "/img/products/99-bead-tasbih-black-and-tan-rmbg.png",
+        image: "/products/99-bead-tasbih-black-and-tan-rmbg.png",
         rating: 4.5,
         reviewCount: 85,
         tags: ["Tasbih", "Prayer Beads", "99 Beads", "Handcrafted"],
@@ -190,7 +202,7 @@ export const ProductArray: ProductType[] = [
         description:
             "A beautifully crafted wall hanging, made with high-quality materials and intricate designs to enhance your home decor.",
         price: 34.99,
-        image: "/img/products/ayat-ul-kursi-wall-hanging-rmbg.png",
+        image: "/products/ayat-ul-kursi-wall-hanging-rmbg.png",
         rating: 4.8,
         reviewCount: 120,
         tags: ["Wall Hanging", "Ayat Ul Kursi", "Home Decor"],
@@ -201,7 +213,7 @@ export const ProductArray: ProductType[] = [
         description:
             "A stylish and functional incense burner, made with durable materials and intricate patterns.",
         price: 19.99,
-        image: "/img/products/bakhoor-incense-burner-rmbg.png",
+        image: "/products/bakhoor-incense-burner-rmbg.png",
         rating: 4.5,
         reviewCount: 110,
         tags: ["Bakhoor", "Incense Burner", "Fragrance", "Decor"],
@@ -212,7 +224,7 @@ export const ProductArray: ProductType[] = [
         description:
             "An elegant Islamic wall frame, perfect for adding a spiritual touch to your home.",
         price: 29.99,
-        image: "/img/products/bismillah-islamic-wall-frame-rmbg.png",
+        image: "/products/bismillah-islamic-wall-frame-rmbg.png",
         rating: 4.8,
         reviewCount: 140,
         tags: ["Wall Frame", "Bismillah", "Home Decor"],
@@ -223,7 +235,7 @@ export const ProductArray: ProductType[] = [
         description:
             "Premium black seed honey, rich in flavor and packed with natural health benefits.",
         price: 14.99,
-        image: "/img/products/black-seed-honey-rmbg.png",
+        image: "/products/black-seed-honey-rmbg.png",
         rating: 4.7,
         reviewCount: 175,
         tags: ["Black Seed", "Honey", "Natural", "Health"],
@@ -234,7 +246,7 @@ export const ProductArray: ProductType[] = [
         description:
             "A compact and portable full Quran, ideal for daily reading and spiritual reflection on the go.",
         price: 9.99,
-        image: "/img/products/pocket-carry-full-quran-rmbg.png",
+        image: "/products/pocket-carry-full-quran-rmbg.png",
         rating: 4.9,
         reviewCount: 220,
         tags: ["Quran", "Portable", "Easy Carry"],
