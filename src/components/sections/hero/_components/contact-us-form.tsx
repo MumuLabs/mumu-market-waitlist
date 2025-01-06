@@ -4,9 +4,9 @@ import React from "react";
 import { useForm, Controller } from "react-hook-form";
 import { toast } from "sonner";
 
-// Import your form components (adjust imports/paths as needed)
 import { FormInput } from "@/components/sections/hero/_components/form-input";
 import { FormButton } from "@/components/sections/hero/_components/form-button";
+import { FormTextArea } from "./form-text-area";
 
 interface ContactUsFormProps {
   onSuccess?: () => void;
@@ -33,7 +33,6 @@ export function ContactUsForm({ onSuccess }: ContactUsFormProps) {
     },
   });
 
-  // Submit handler
   const onSubmit = async (data: ContactUsFormInputs) => {
     try {
       const res = await fetch("/api/contact", {
@@ -41,19 +40,21 @@ export function ContactUsForm({ onSuccess }: ContactUsFormProps) {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(data),
       });
-      if (!res.ok) throw new Error("Failed to send.");
 
-      toast.success("Your message has been sent!");
-      reset();        // Clear out the form
-      onSuccess?.();  // Close the modal or do whatever on success
+      if (!res.ok) throw new Error("Something went wrong, failed to send a message.");
+
+      toast.success("Success! We'll get back to you soon.");
+      reset();
+      onSuccess?.();
+
     } catch (error) {
       toast.error("Something went wrong. Please try again.");
+
     }
   };
 
   return (
     <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
-      {/* Name Field */}
       <Controller
         name="name"
         control={control}
@@ -70,7 +71,6 @@ export function ContactUsForm({ onSuccess }: ContactUsFormProps) {
         <p className="text-red-500">{errors.name.message}</p>
       )}
 
-      {/* Email Field */}
       <Controller
         name="email"
         control={control}
@@ -94,18 +94,14 @@ export function ContactUsForm({ onSuccess }: ContactUsFormProps) {
         <p className="text-red-500">{errors.email.message}</p>
       )}
 
-      {/* Message Field (Textarea) */}
       <Controller
         name="message"
         control={control}
         rules={{ required: "Message is required" }}
         render={({ field }) => (
-          // If your FormInput doesn't support a textarea, you can create a separate FormTextArea
-          // Or pass an “as” prop if your FormInput is built to handle multiple element types
-          <FormInput
-            label="Message"
+          <FormTextArea
+            label="Message:"
             placeholder="Enter your message..."
-            // as="textarea" // <-- only if your FormInput supports it
             {...field}
           />
         )}
@@ -114,7 +110,6 @@ export function ContactUsForm({ onSuccess }: ContactUsFormProps) {
         <p className="text-red-500">{errors.message.message}</p>
       )}
 
-      {/* Submit Button */}
       <FormButton text="Send" />
     </form>
   );

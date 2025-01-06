@@ -3,7 +3,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import { ArrowButton } from "@/components/ui/arrow-button";
-import { MumuWaitlistModal } from "./_components/modal";
+import { MumuWaitlistModal } from "./_components/waitlist-modal";
 import { ContactUsModal } from "./_components/contact-us-modal";
 
 export function Hero() {

@@ -28,7 +28,7 @@ export const MumuWaitlistModal = ({
 
                     <Tabs defaultValue="user" className="w-full">
                         <TabsList className="grid grid-cols-2 mb-8">
-                            <TabsTrigger value="user">Regular User</TabsTrigger>
+                            <TabsTrigger value="user">Shopper</TabsTrigger>
                             <TabsTrigger value="business">Business Owner</TabsTrigger>
                         </TabsList>
 
