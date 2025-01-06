@@ -38,17 +38,19 @@ export function BusinessValuesSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          {BusinessValueArray.map((value, index) => (
-            <ValueCard
-              key={index}
-              title={value.title}
-              description={value.description}
-              image={value.image}
-              imageClassName={value.imageClassName}
-              titleClassName={value.titleClassName}
-              descriptionClassName={value.descriptionClassName}
-            />
-          ))}
+           {BusinessValueArray.map((value, index) =>  {
+              return (
+                <ValueCard 
+                  key={index}
+                  title={value.title}
+                  description={value.description}
+                  image={value.image}
+                  imageClassName={value.imageClassName}
+                  titleClassName={value.titleClassName}
+                  descriptionClassName={value.descriptionClassName}
+                />
+              )
+           })};
         </div>
       </div>
     </section>
