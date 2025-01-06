@@ -85,7 +85,7 @@ export async function insertMumuWaitlistUser(user: MumuWaitlistUser) {
 
 // ANCHOR: Function for MumuWaitlistBusinessOwner
 export async function insertMumuWaitlistBusinessOwner(user: MumuWaitlistBusinessOwner) {
-    const response = await insertRecord("mumu_waitlist_business_owner", user);
+    const response = await insertRecord("mumu_waitlist_owner", user);
 
     if (!response.success) {
         throw new Error(response.error);

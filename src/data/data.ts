@@ -15,11 +15,7 @@ import {
 } from "lucide-react";
 import React from "react";
 
-/**
- * Updated FeaturesArray:
- * • Removed mentions of cart and tracking orders.
- * • Preserved the original icons and structure.
- */
+
 export const FeaturesArray: FeatureType[] = [
     {
         icon: React.createElement(ShoppingBasketIcon, { className: "w-8 h-8" }),
@@ -47,13 +43,14 @@ export const FeaturesArray: FeatureType[] = [
     },
 ];
 
+
 export const BusinessValueArray: BusinessValueType[] = [
     {
         title: "١. Exposure",
         description:
             "Get your brand in front of a global audience actively searching for Muslim-owned businesses. Make your presence shine.",
         image: {
-            src: "/images/exposure.jpg",
+            src: "/sections/business-values/exposure.jpg",
             alt: "Exposure",
             width: 300,
             height: 300
@@ -67,7 +64,7 @@ export const BusinessValueArray: BusinessValueType[] = [
         description:
             "Elevate awareness by harnessing a dedicated platform. Mumu Market helps turn curious shoppers into loyal customers.",
         image: {
-            src: "/images/brand-growth.jpg",
+            src: "/sections/business-values/brand-growth.jpg",
             alt: "Brand Growth",
             width: 300,
             height: 300
@@ -81,7 +78,7 @@ export const BusinessValueArray: BusinessValueType[] = [
         description:
             "Boost your sales by tapping into a community that values authentic, faith-driven enterprises. Watch profits soar.",
         image: {
-            src: "/images/increased-revenue.jpg",
+            src: "/sections/business-values/increased-revenue.jpg",
             alt: "Increased Revenue",
             width: 300,
             height: 300
@@ -91,6 +88,7 @@ export const BusinessValueArray: BusinessValueType[] = [
         descriptionClassName: ""
     },
 ];
+
 
 export const ProductArray: ProductType[] = [
     {
