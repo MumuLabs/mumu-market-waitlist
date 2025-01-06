@@ -4,16 +4,18 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ArrowButton } from "@/components/ui/arrow-button";
 import { MumuWaitlistModal } from "./_components/modal";
+import { ContactUsModal } from "./_components/contact-us-modal";
 
 export function Hero() {
     const [isWaitlistModalOpen, setIsWaitlistModalOpen] = useState(false);
+    const [isContactModalOpen, setIsContactModalOpen] = useState(false);
 
     const openWaitlistModal = () => {
         setIsWaitlistModalOpen(true);
     };
 
     const openContactUsModal = () => {
-        // TODO: Open a Contact Us Modal when Button Clicked.
+        setIsContactModalOpen(true);
     };
 
     return (
@@ -50,6 +52,11 @@ export function Hero() {
             <MumuWaitlistModal 
                 isOpen={isWaitlistModalOpen} 
                 onClose={() => setIsWaitlistModalOpen(false)} 
+            />
+
+            <ContactUsModal
+                isOpen={isContactModalOpen}
+                onClose={() => setIsContactModalOpen(false)}
             />
         </>
     );
