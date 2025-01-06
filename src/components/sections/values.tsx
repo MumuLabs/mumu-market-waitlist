@@ -36,6 +36,7 @@ export function BusinessValuesSection() {
            {BusinessValueArray.map((value, index) =>  {
               return (
                 <ValueCard 
+                  key={index}
                   title={value.title}
                   description={value.description}
                   image={value.image}
