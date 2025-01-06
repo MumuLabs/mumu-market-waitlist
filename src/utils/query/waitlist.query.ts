@@ -3,16 +3,66 @@
 import { createClient } from "@/utils/supabase/client";
 import { MumuWaitlistUser, MumuWaitlistBusinessOwner } from "@/types/user.types";
 
+function isMumuWaitlistUser(record: any): record is MumuWaitlistUser {
+    return 'email' in record;
+}
+
+function isMumuWaitlistBusinessOwner(record: any): record is MumuWaitlistBusinessOwner {
+    return 'mbo_name' in record && 'mbo_email' in record && 'mbo_weblink' in record && 'mbo_number' in record;
+}
+
+
 // ANCHOR: Insert Record of Type <MumuWaitlistUser | MumuWaitlistBusinessOwner> to Database
-async function insertRecord<T>(table: string, record: T) {
+async function insertRecord<T>(
+    table: string,
+    record: T
+) {
     try {
-        const { data, error } = await createClient().from(table).insert([record]);
+        const client = createClient();
 
-        if (!data || error) {
-            throw new Error(error?.message || "Inserting Record to Database Operation Failed.");
+        if (isMumuWaitlistUser(record)) {
+            const { data, error } = await createClient()
+                .from(table)
+                .insert([{
+                    email: record.email,
+                }])
+                .single();
+
+            if (error) {
+                throw new Error(error?.message || "Inserting Record to Database Operation Failed.");
+            }
+
+            // TODO: Refactor Code.
+            return {
+                success: true,
+                data: data
+            }
+
+        } else if (isMumuWaitlistBusinessOwner(record)) {
+            const { data, error } = await client
+                .from(table)
+                .insert([{
+                    mbo_name: record.mbo_name,
+                    mbo_email: record.mbo_email,
+                    mbo_weblink: record.mbo_weblink,
+                    mbo_number: record.mbo_number,
+                }])
+                .single();
+
+            if (error) {
+                throw new Error(error?.message || "Inserting Record to Database Operation Failed.");
+            }
+
+            // TODO: Refactor Code.
+            return {
+                success: true,
+                data: data
+            }
+
+        } else {
+            throw new Error(`Invalid record type: ${(record as any).constructor.name}`);
+
         }
-
-        return { success: true, data: data![0] };
 
     } catch (error) {
         const errMessage =

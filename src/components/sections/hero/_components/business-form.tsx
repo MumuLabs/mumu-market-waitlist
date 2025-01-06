@@ -28,8 +28,7 @@ export const MumuWaitListBusinessForm = () => {
 
     const onSubmit = async (user: MumuWaitlistBusinessOwner) => {
         try {
-             const response = await insertMumuWaitlistBusinessOwner(user);
-
+            const response = await insertMumuWaitlistBusinessOwner(user);
             
             // TODO: Remove console.log() after testing.
             console.log(response);
