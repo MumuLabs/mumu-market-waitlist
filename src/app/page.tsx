@@ -23,42 +23,48 @@ export default function App() {
   return (
     <motion.div 
       className="min-h-screen"
-      initial={{ scale: 0.8, opacity: 0 }}
-      animate={{ scale: 1, opacity: 1 }}
-      transition={{ duration: 0.8, ease: "easeOut" }}
+      initial={{ scale: 0.9 }}
+      animate={{ scale: 1 }}
+      transition={{ duration: 0.5, type: "spring", stiffness: 100 }}
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <motion.div
           ref={heroRef}
-          initial={{ y: 50, opacity: 0 }}
-          animate={isHeroInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ scale: 0.8 }}
+          animate={isHeroInView ? { scale: 1 } : { scale: 0.8 }}
+          transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
         >
           <Hero />
         </motion.div>
 
         <motion.div
           ref={productsRef}
-          initial={{ x: -50, opacity: 0 }}
-          animate={isProductsInView ? { x: 0, opacity: 1 } : { x: -50, opacity: 0 }}
-          transition={{ duration: 0.6 }}
+          initial={{ scale: 0.8 }}
+          animate={isProductsInView ? { scale: 1 } : { scale: 0.8 }}
+          transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
         >
           <ProductsSection />
         </motion.div>
 
         <motion.div 
           ref={featuresRef}
-          className="grid grid-cols-1 md:grid-cols-3 gap-12 py-20"
-          initial={{ y: 50, opacity: 0 }}
-          animate={isFeaturesInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-          transition={{ duration: 0.6 }}
+          className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6 sm:gap-8 md:gap-12 py-12 sm:py-16 md:py-20"
+          initial={{ scale: 0.9 }}
+          animate={isFeaturesInView ? { scale: 1 } : { scale: 0.9 }}
+          transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
         >
           {FeaturesArray.map((feature, index) => (
             <motion.div
               key={index}
-              initial={{ scale: 0.8, opacity: 0 }}
-              animate={isFeaturesInView ? { scale: 1, opacity: 1 } : { scale: 0.8, opacity: 0 }}
-              transition={{ duration: 0.5, delay: index * 0.1 }}
+              initial={{ scale: 0.5 }}
+              animate={isFeaturesInView ? { scale: 1 } : { scale: 0.5 }}
+              transition={{
+                duration: 0.6,
+                delay: index * 0.1,
+                type: "spring",
+                stiffness: 200,
+                damping: 15
+              }}
             >
               <Feature {...feature} />
             </motion.div>
@@ -68,9 +74,9 @@ export default function App() {
 
       <motion.div
         ref={valuesRef}
-        initial={{ y: 50, opacity: 0 }}
-        animate={isValuesInView ? { y: 0, opacity: 1 } : { y: 50, opacity: 0 }}
-        transition={{ duration: 0.6 }}
+        initial={{ scale: 0.8 }}
+        animate={isValuesInView ? { scale: 1 } : { scale: 0.8 }}
+        transition={{ duration: 0.5, type: "spring", bounce: 0.4 }}
       >
         <BusinessValuesSection />
       </motion.div>

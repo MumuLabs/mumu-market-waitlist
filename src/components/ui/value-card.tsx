@@ -46,14 +46,12 @@ export function ValueCard({
                 shadow-lg
                 overflow-hidden
                 border-2 
-                border-transparent
+                border-slate-200
                 transition-all
                 duration-300
                 ease-in-out
-                hover:border-primary
+                hover:border-slate-300
                 hover:shadow-xl
-                focus-within:ring-3
-                focus-within:ring-primary-color
                 ${onClick ? 'cursor-pointer' : ''}
             `, className)}
         >

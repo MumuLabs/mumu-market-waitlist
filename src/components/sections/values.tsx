@@ -18,7 +18,7 @@ export function BusinessValuesSection() {
           </h2>
           <Link
             className="text-primary-color font-medium hover:text-[#d2a87c] flex items-center gap-2"
-            href="#"
+            href="https://mumumarket.substack.com/p/mumu-market"
           >
             <OutInUnderline label="Read more" direction="right" />
             <ArrowUpRightFromSquare className="w-4 h-4" />
@@ -50,7 +50,7 @@ export function BusinessValuesSection() {
                   descriptionClassName={value.descriptionClassName}
                 />
               )
-           })};
+           })}
         </div>
       </div>
     </section>
