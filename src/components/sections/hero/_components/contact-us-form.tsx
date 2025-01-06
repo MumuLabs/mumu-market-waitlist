@@ -1,104 +1,121 @@
 "use client";
 
-import React, { useState } from "react";
-import { sendContactEmail } from "@/app/actions/contact.query";
+import React from "react";
+import { useForm, Controller } from "react-hook-form";
 import { toast } from "sonner";
+
+// Import your form components (adjust imports/paths as needed)
+import { FormInput } from "@/components/sections/hero/_components/form-input";
+import { FormButton } from "@/components/sections/hero/_components/form-button";
 
 interface ContactUsFormProps {
   onSuccess?: () => void;
 }
 
+// Define the shape of your contact form data
+type ContactUsFormInputs = {
+  name: string;
+  email: string;
+  message: string;
+};
+
 export function ContactUsForm({ onSuccess }: ContactUsFormProps) {
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    message: "",
+  const {
+    control,
+    handleSubmit,
+    reset,
+    formState: { errors },
+  } = useForm<ContactUsFormInputs>({
+    defaultValues: {
+      name: "",
+      email: "",
+      message: "",
+    },
   });
-  const [loading, setLoading] = useState(false);
 
-  const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    setFormData((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
-  };
-
-  const handleSubmit = async (event: React.FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
-    setLoading(true);
-
+  // Submit handler
+  const onSubmit = async (data: ContactUsFormInputs) => {
     try {
-      const formData = {
-        name: event.target.name.value,
-        email: event.target.email.value,
-        message: event.target.message.value,
-      };
-
-      const response = await fetch('/api/contact', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(formData),
+      const res = await fetch("/api/contact", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
       });
-
-      if (!response.ok) throw new Error("Failed to send");
+      if (!res.ok) throw new Error("Failed to send.");
 
       toast.success("Your message has been sent!");
-      setFormData({ name: "", email: "", message: "" });
-      onSuccess?.();
+      reset();        // Clear out the form
+      onSuccess?.();  // Close the modal or do whatever on success
     } catch (error) {
-      console.error("Error sending contact form:", error);
       toast.error("Something went wrong. Please try again.");
-    } finally {
-      setLoading(false);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit} className="space-y-6">
-      <div>
-        <label className="block text-sm font-semibold mb-1">Name</label>
-        <input
-          className="border border-gray-300 rounded w-full px-3 py-2"
-          type="text"
-          name="name"
-          onChange={handleChange}
-          value={formData.name}
-          placeholder="Enter your name..."
-          required
-        />
-      </div>
-      <div>
-        <label className="block text-sm font-semibold mb-1">Email</label>
-        <input
-          className="border border-gray-300 rounded w-full px-3 py-2"
-          type="email"
-          name="email"
-          onChange={handleChange}
-          value={formData.email}
-          placeholder="Enter your email..."
-          required
-        />
-      </div>
-      <div>
-        <label className="block text-sm font-semibold mb-1">Message</label>
-        <textarea
-          className="border border-gray-300 rounded w-full px-3 py-2"
-          name="message"
-          onChange={handleChange}
-          value={formData.message}
-          placeholder="Enter your message..."
-          required
-        />
-      </div>
-      <button
-        type="submit"
-        disabled={loading}
-        className="bg-primary-color text-white px-4 py-2 rounded"
-      >
-        {loading ? "Sending..." : "Send"}
-      </button>
+    <form onSubmit={handleSubmit(onSubmit)} className="space-y-6">
+      {/* Name Field */}
+      <Controller
+        name="name"
+        control={control}
+        rules={{ required: "Name is required" }}
+        render={({ field }) => (
+          <FormInput
+            label="Name"
+            placeholder="Enter your name..."
+            {...field}
+          />
+        )}
+      />
+      {errors.name && (
+        <p className="text-red-500">{errors.name.message}</p>
+      )}
+
+      {/* Email Field */}
+      <Controller
+        name="email"
+        control={control}
+        rules={{
+          required: "Email is required",
+          pattern: {
+            value: /^[^@]+@[^@]+\.[^@]+$/,
+            message: "Please enter a valid email address",
+          },
+        }}
+        render={({ field }) => (
+          <FormInput
+            label="Email"
+            type="email"
+            placeholder="Enter your email..."
+            {...field}
+          />
+        )}
+      />
+      {errors.email && (
+        <p className="text-red-500">{errors.email.message}</p>
+      )}
+
+      {/* Message Field (Textarea) */}
+      <Controller
+        name="message"
+        control={control}
+        rules={{ required: "Message is required" }}
+        render={({ field }) => (
+          // If your FormInput doesn't support a textarea, you can create a separate FormTextArea
+          // Or pass an “as” prop if your FormInput is built to handle multiple element types
+          <FormInput
+            label="Message"
+            placeholder="Enter your message..."
+            // as="textarea" // <-- only if your FormInput supports it
+            {...field}
+          />
+        )}
+      />
+      {errors.message && (
+        <p className="text-red-500">{errors.message.message}</p>
+      )}
+
+      {/* Submit Button */}
+      <FormButton text="Send" />
     </form>
   );
 }
