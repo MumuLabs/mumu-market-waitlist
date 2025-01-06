@@ -2,6 +2,7 @@
 
 import React from "react";
 import Link from "next/link";
+import { BusinessValueArray } from "@/data/data";
 import { ValueCard } from "@/components/ui/value-card";
 import { OutInUnderline } from "../ui/underline";
 import { ArrowUpRightFromSquare } from "lucide-react";
@@ -32,36 +33,18 @@ export function BusinessValuesSection() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
-          <ValueCard
-            title="Stay informed, always"
-            description="Get instant alerts on key market movements or when your trade triggers are met."
-            image={{
-              src: "",
-              alt: "",
-              width: 300,
-              height: 300
-            }}
-          />
-          <ValueCard
-            title="AI-Powered precision"
-            description="Smart and accurate AI-driven engine makes split-second decisions for optimal trading results."
-            image={{
-              src: "",
-              alt: "",
-              width: 300,
-              height: 300
-            }}
-          />
-          <ValueCard
-            title="Tailor your experience"
-            description="Customize your strategies to fit your unique investment style, creating just for you."
-            image={{
-              src: "",
-              alt: "",
-              width: 300,
-              height: 300
-            }}
-          />
+           {BusinessValueArray.map((value, index) =>  {
+              return (
+                <ValueCard 
+                  title={value.title}
+                  description={value.description}
+                  image={value.image}
+                  imageClassName={value.imageClassName}
+                  titleClassName={value.titleClassName}
+                  descriptionClassName={value.descriptionClassName}
+                />
+              )
+           })}
         </div>
       </div>
     </section>
