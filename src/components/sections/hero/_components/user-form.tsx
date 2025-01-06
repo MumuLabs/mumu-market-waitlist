@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { FormButton } from "./form-button";
 import { FormInput } from "./form-input";
-import { createClient } from "@/utils/supabase/client";
+import { insertMumuWaitlistUser } from "@/utils/query/waitlist.query";
 import { MumuWaitlistUser } from "@/types/user.types";
 import { mumuUserSchema } from "@/utils/schema";
 import { toast } from "sonner";
@@ -26,18 +26,10 @@ export const MumuWaitListUserForm = () => {
 
     const onSubmit = async (user: MumuWaitlistUser) => {
         try {
-            const { data, error } = await createClient().from("mumu_waitlist_user").insert([
-                {
-                    email: user.email,
-                    created_at: new Date(),
-                    updated_at: new Date()
-                }
-            ]);
-
-            if (error) throw new Error(`Error Creating Mumu User: ${error}`);
+            const response = await insertMumuWaitlistUser(user);
 
             // TODO: Remove console.log() after testing.
-            console.log(data);
+            console.log(response);
 
             toast.success("You Have Been Added to Waitlist!");
             reset();

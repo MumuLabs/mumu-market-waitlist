@@ -5,7 +5,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 
 import { FormInput } from "./form-input";
 import { FormButton } from "./form-button";
-import { createClient } from "@/utils/supabase/client";
+import { insertMumuWaitlistBusinessOwner } from "@/utils/query/waitlist.query";
 import { MumuWaitlistBusinessOwner } from "@/types/user.types";
 import { mumuBusinessOwnerSchema } from "@/utils/schema";
 import { toast } from "sonner";
@@ -28,18 +28,11 @@ export const MumuWaitListBusinessForm = () => {
 
     const onSubmit = async (user: MumuWaitlistBusinessOwner) => {
         try {
-            const { data, error } = await createClient().from("mumu_waitlist_business_owner").insert([
-                {
-                    ...user,
-                    created_at: new Date().toISOString(),
-                    updated_at: new Date().toISOString()
-                }
-            ]);
+             const response = await insertMumuWaitlistBusinessOwner(user);
 
-            if (error) throw new Error(`Error Creating Mumu Business Owner: ${error}`);
             
             // TODO: Remove console.log() after testing.
-            console.log(data);
+            console.log(response);
 
             toast.success("You Have Been Added to Waitlist!");
 
