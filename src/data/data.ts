@@ -15,43 +15,46 @@ import {
 } from "lucide-react";
 import React from "react";
 
+/**
+ * Updated FeaturesArray:
+ * • Removed mentions of cart and tracking orders.
+ * • Preserved the original icons and structure.
+ */
 export const FeaturesArray: FeatureType[] = [
     {
         icon: React.createElement(ShoppingBasketIcon, { className: "w-8 h-8" }),
-        title: "Checkout The Global Market",
+        title: "Explore",
         description: `
-        Explore our curated collection authentic products 
-        from trusted muslim-owned businesses worldwide, all 
-        verified by us.
+        Browse our curated selection of products from trusted
+        Muslim-owned businesses, each verified for authenticity.
         `,
     },
     {
         icon: React.createElement(ScanBarcodeIcon, { className: "w-8 h-8" }),
-        title: "Add A Product To Your Cart",
+        title: "Purchase",
         description: `
-        Easily browse and select a product you want to buy 
-        and add it to your cart. We will handle the rest
-        for you.
+        Quickly find and buy your desired items from faith-driven merchants. 
+        It's simple and secure.
         `,
     },
     {
         icon: React.createElement(TruckIcon, { className: "w-8 h-8" }),
-        title: "Track Your Orders In Real Time",
+        title: "Support",
         description: `
-        Stay informed with real-time shipping updates and 
-        know exactly when your package will arrive at your 
-        doorstep.
+        Every purchase helps Muslim entrepreneurs thrive, 
+        fostering a vibrant and united community.
         `,
     },
 ];
 
 export const BusinessValueArray: BusinessValueType[] = [
     {
-        title: "",
-        description: "",
+        title: "١. Exposure",
+        description:
+            "Get your brand in front of a global audience actively searching for Muslim-owned businesses. Make your presence shine.",
         image: {
-            src: "",
-            alt: "",
+            src: "/images/exposure.jpg",
+            alt: "Exposure",
             width: 300,
             height: 300
         },
@@ -60,11 +63,12 @@ export const BusinessValueArray: BusinessValueType[] = [
         descriptionClassName: ""
     },
     {
-        title: "",
-        description: "",
+        title: "٢. Brand Growth",
+        description:
+            "Elevate awareness by harnessing a dedicated platform. Mumu Market helps turn curious shoppers into loyal customers.",
         image: {
-            src: "",
-            alt: "",
+            src: "/images/brand-growth.jpg",
+            alt: "Brand Growth",
             width: 300,
             height: 300
         },
@@ -73,11 +77,12 @@ export const BusinessValueArray: BusinessValueType[] = [
         descriptionClassName: ""
     },
     {
-        title: "",
-        description: "",
+        title: "٣. Increased Revenue",
+        description:
+            "Boost your sales by tapping into a community that values authentic, faith-driven enterprises. Watch profits soar.",
         image: {
-            src: "",
-            alt: "",
+            src: "/images/increased-revenue.jpg",
+            alt: "Increased Revenue",
             width: 300,
             height: 300
         },

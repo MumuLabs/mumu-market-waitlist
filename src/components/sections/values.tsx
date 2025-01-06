@@ -13,10 +13,14 @@ export function BusinessValuesSection() {
     <section className="relative py-24">
       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center mb-12">
-          <h2 className="text-lg font-medium text-slate-600">{"Mumu Business Benefits".toUpperCase()}</h2>
-          
-          <Link className="text-primary-color font-medium hover:text-[#d2a87c] flex items-center gap-2" href="#">
-            <OutInUnderline label="Read more" direction="right"/>
+          <h2 className="text-lg font-medium text-slate-600">
+            {"Mumu Business Benefits".toUpperCase()}
+          </h2>
+          <Link
+            className="text-primary-color font-medium hover:text-[#d2a87c] flex items-center gap-2"
+            href="#"
+          >
+            <OutInUnderline label="Read more" direction="right" />
             <ArrowUpRightFromSquare className="w-4 h-4" />
           </Link>
         </div>
@@ -25,10 +29,11 @@ export function BusinessValuesSection() {
 
         <div className="mb-12">
           <h2 className="text-4xl font-bold text-gray-900 max-w-2xl">
-            You control the budget and growth targets. Nock does the rest.
+            Expand Your Reach with Mumu Market
           </h2>
           <p className="mt-4 text-lg text-gray-600 max-w-2xl">
-            Nock's AI monitors the market and trades for you, 24/7. Perfect for beginners and experts alike. No coding, no guesswork.
+            We connect your business with an authentic, faith-focused community, 
+            so you can focus on what you do best while we help enhance your brand's visibility.
           </p>
         </div>
 
@@ -45,7 +50,7 @@ export function BusinessValuesSection() {
                   descriptionClassName={value.descriptionClassName}
                 />
               )
-           })}
+           })};
         </div>
       </div>
     </section>
