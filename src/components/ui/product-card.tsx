@@ -38,8 +38,13 @@ const muslimCompanyIcons = [
 	StoreIcon,
 ];
 
-function getRandomItem<T>(arr: T[]): T {
-	return arr[Math.floor(Math.random() * arr.length)];
+// Simple deterministic “hash” for illustration
+function simpleDeterministicIndex(str: string) {
+	let sum = 0
+	for (let i = 0; i < str.length; i++) {
+		sum = (sum + str.charCodeAt(i)) % 9999
+	}
+	return sum
 }
 
 // ANCHOR: Maps Specific Product-Name Keywords/Phrases to Custom Meta Tags
@@ -66,8 +71,18 @@ const ProductCard: React.FC<ProductCardProps> = ({
 	reviewCount,
 	className
 }) => {
-	const [companyName] = React.useState(() => getRandomItem(muslimCompanyNames));
-	const [IconComponent] = React.useState(() => getRandomItem(muslimCompanyIcons));
+	// Use a memo so the same product name yields the same icon each render.
+	const iconIndex = React.useMemo(() => {
+		return simpleDeterministicIndex(name) % muslimCompanyIcons.length
+	}, [name ])
+
+	const nameIndex = React.useMemo(() => {
+		return simpleDeterministicIndex(name) % muslimCompanyNames.length
+	}, [name])
+
+	const IconComponent = muslimCompanyIcons[iconIndex]
+	const companyName = muslimCompanyNames[nameIndex]
+
 	const metaTag = getMetaTagFromName(name);
 
 	return (
